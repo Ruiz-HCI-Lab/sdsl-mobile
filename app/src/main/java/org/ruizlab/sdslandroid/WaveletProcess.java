@@ -1,3 +1,9 @@
+// -----------------------------------------------------------------------
+// <copyright file="WaveletProcess.java" company="Ruiz HCI Lab">
+// Copyright (c) Ruiz HCI Lab. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the repository root for full license information.
+// </copyright>
+// -----------------------------------------------------------------------
 package org.ruizlab.sdslandroid;
 
 import static android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC;

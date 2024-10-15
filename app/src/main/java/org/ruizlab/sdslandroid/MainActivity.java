@@ -1,3 +1,9 @@
+// -----------------------------------------------------------------------
+// <copyright file="MainActivity.java" company="Ruiz HCI Lab">
+// Copyright (c) Ruiz HCI Lab. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the repository root for full license information.
+// </copyright>
+// -----------------------------------------------------------------------
 package org.ruizlab.sdslandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +23,6 @@ import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 
 import org.ruizlab.sdslandroid.databinding.ActivityMainBinding;
-
 
 public class MainActivity extends AppCompatActivity {
 
