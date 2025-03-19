@@ -1,18 +1,37 @@
 # SDSL Mobile
 
-SDSL Mobile is a project for building a portable version of the SDSL-lite library for Android using the Android NDK. 
+SDSL Mobile is a project for porting the Succinct Data Structure Library (SDSL-lite) to Android platforms, enabling space-efficient data structures for mobile applications. This project demonstrates the feasibility of deploying succinct data structures on mobile devices, providing new opportunities for advanced data processing in resource-constrained environments.
 
 This repository contains the necessary configurations and build commands to compile the library for different Android ABIs.
 
-It also contains a demonstrative Android application that includes SDSL-lite tests and a specific implementation of Wavelet Forests that consumes the library. 
+It also contains a demonstrative Android application with SDSL-lite tests and a specific implementation of Wavelet Forests that consumes the library. 
 
-## Prerequisites
+## Usage
 
-- **Android NDK**: Ensure you have the Android NDK installed. The paths in the build commands assume the NDK is located at `~/Android/Sdk/ndk/25.1.8937393/`.
+To use SDSL-Mobile in your Android application, follow these steps:
+
+1. **Add the Native Library**: Include the prebuilt SDSL library in your Android project, or build it using the provided ABI commands. 
+2. **JNI Integration**: Use the Java Native Interface (JNI) to call SDSL functions from your Java code.
+3. **Example Code**:
+   ```java
+   public class MainActivity extends AppCompatActivity {
+       static {
+           System.loadLibrary("sdsl-mobile");
+       }
+
+       private native void sdslFunction();
+
+       @Override
+       protected void onCreate(Bundle savedInstanceState) {
+           super.onCreate(savedInstanceState);
+           setContentView(R.layout.activity_main);
+           sdslFunction();
+       }
+   }
 
 ## Build Commands
 
-The following commands can be used to build the SDSL library for different Android ABIs. 
+If you want to build and include the library in your Android application, the following commands can be used to construct the SDSL library for different Android ABIs. 
 Set the `BUILD_PORTABLE` environment variable to `1` to ensure portability.
 
 ### Common Build Command
@@ -55,6 +74,20 @@ If you encounter any issues during the build process, ensure that the following 
 -msse4.2
 ```
 
+## Performance Evaluation
+
+We performed a comprehensive evaluation comparing the performance of SDSL-Mobile on Android and desktop platforms. Key metrics include CPU time, wall time, RAM usage, and CPU temperature. The results indicate that while performance is lower on Android due to inherent hardware constraints, SDSL-Mobile remains functional and viable for lightweight applications.
+
+| Metric            | Desktop  | Android  |
+|-------------------|----------|----------|
+| CPU Time (ms)     | 408      | 868      |
+| Wall Time (ms)    | 454      | 885      |
+| Avg RAM Usage (MB)| 2596.23  | 2760.47  |
+| Max RAM Usage (MB)| 3498.35  | 3781.52  |
+| Avg CPU Temp (°C) | 58.6     | 53.6     |
+| Max CPU Temp (°C) | 76       | 72.6     |
+
+
 ## License
 
 This project is licensed under the MIT License. Please look at the [LICENSE](LICENSE) file for details.
@@ -65,7 +98,7 @@ Contributions are welcome! Please open an issue or submit a pull request with yo
 
 ## Contact
 
-For any questions or inquiries, please get in touch with the repository maintainers.
+If you have any questions, please contact the repository maintainers.
 
 ---
 
