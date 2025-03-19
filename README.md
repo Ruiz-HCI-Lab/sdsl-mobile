@@ -6,6 +6,10 @@ This repository contains the necessary configurations and build commands to comp
 
 It also contains a demonstrative Android application with SDSL-lite tests and a specific implementation of Wavelet Forests that consumes the library. 
 
+## Acknowledgements
+
+This project ports the Succinct Data Structure Library (SDSL-lite) to Android platforms. We thank the original developers [SDSL-lite repository](https://github.com/simongog/sdsl-lite) for providing the foundation for this work.
+
 ## Usage
 
 To use SDSL-Mobile in your Android application, follow these steps:
