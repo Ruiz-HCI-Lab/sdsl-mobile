@@ -10,7 +10,7 @@ It also contains a demonstrative Android application with SDSL-lite tests and a 
 
 To use SDSL-Mobile in your Android application, follow these steps:
 
-1. **Add the Native Library**: Include the prebuilt SDSL library in your Android project, or build it using the provided ABI commands. 
+1. **Add the Native Library**: Include the prebuilt SDSL library in your Android project, or build it using the provided ABI commands. Prebuilt libraries can be found in /app/src/main/cpp/libs
 2. **JNI Integration**: Use the Java Native Interface (JNI) to call SDSL functions from your Java code.
 3. **Example Code**:
    ```java
