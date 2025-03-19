@@ -11,8 +11,9 @@ It also contains a demonstrative Android application with SDSL-lite tests and a 
 To use SDSL-Mobile in your Android application, follow these steps:
 
 1. **Add the Native Library**: Include the prebuilt SDSL library in your Android project, or build them using the provided ABI commands. Prebuilt libraries are in the [Libraries Folder](app/src/main/cpp/libs).
-2. **JNI Integration**: Use the Java Native Interface (JNI) to call SDSL functions from your Java code.
-3. **Example Code**:
+2. **Incorporate Library in CMake**:  
+3. **JNI Integration**: Use the Java Native Interface (JNI) to call SDSL functions from your Java code.
+4. **Example Code**:
    ```java
    public class MainActivity extends AppCompatActivity {
        static {
@@ -34,36 +35,38 @@ To use SDSL-Mobile in your Android application, follow these steps:
 If you want to build and include the library in your Android application, the following commands can be used to construct the SDSL library for different Android ABIs. 
 Set the `BUILD_PORTABLE` environment variable to `1` to ensure portability.
 
-### Common Build Command
-
+### Obtain the SDSL-lite code
 ```sh
-BUILD_PORTABLE=1 CC=<clang_path> CXX=<clang++_path>
+git clone https://github.com/simongog/sdsl-lite.git
+cd sdsl-lite
 ```
 
 ### ABI Specific Commands
 
+Build the libraries for your phone, depending on specific ABI.
+
 #### AARCH64 (arm64-v8a)
 
 ```sh
-BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang++
+BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang++ ./install.sh ~/[pathToYourApp]/app/src/main/cpp/libs/arm64-v8a
 ```
 
 #### x86_64
 
 ```sh
-BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android28-clang++
+BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android28-clang++ ./install.sh ~/[pathToYourApp]/app/src/main/cpp/libs/arm64-v8a
 ```
 
 #### ARMv7a (armeabi-v7a)
 
 ```sh
-BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi28-clang++
+BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi28-clang++ ./install.sh ~/[pathToYourApp]/app/src/main/cpp/libs/arm64-v8a
 ```
 
 #### x86
 
 ```sh
-BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/i686-linux-android28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/i686-linux-android28-clang++
+BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/i686-linux-android28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/i686-linux-android28-clang++ ./install.sh ~/[pathToYourApp]/app/src/main/cpp/libs/arm64-v8a
 ```
 
 ## Troubleshooting
