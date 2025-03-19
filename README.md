@@ -8,7 +8,7 @@ It also contains a demonstrative Android application with SDSL-lite tests and a 
 
 ## Acknowledgements
 
-This project ports the Succinct Data Structure Library (SDSL-lite) to Android platforms. We thank the original developers [SDSL-lite repository](https://github.com/simongog/sdsl-lite) for providing the foundation for this work.
+This project ports the Succinct Data Structure Library (SDSL-lite) to Android platforms. We thank the original developers ([SDSL-lite repository](https://github.com/simongog/sdsl-lite)) for providing the foundation for this work.
 
 ## Usage
 
