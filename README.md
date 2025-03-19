@@ -19,6 +19,7 @@ Set the `BUILD_PORTABLE` environment variable to `1` to ensure portability.
 
 ```sh
 BUILD_PORTABLE=1 CC=<clang_path> CXX=<clang++_path>
+```
 
 ### ABI Specific Commands
 
@@ -26,20 +27,25 @@ BUILD_PORTABLE=1 CC=<clang_path> CXX=<clang++_path>
 
 ```sh
 BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang++
+```
 
 #### x86_64
 
 ```sh
 BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android28-clang++
+```
 
 #### ARMv7a (armeabi-v7a)
 
-
+```sh
 BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi28-clang++
+```
 
 #### x86
 
+```sh
 BUILD_PORTABLE=1 CC=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/i686-linux-android28-clang CXX=~/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/i686-linux-android28-clang++
+```
 
 ## Troubleshooting
 
@@ -47,6 +53,7 @@ If you encounter any issues during the build process, ensure that the following 
 
 ```sh
 -msse4.2
+```
 
 ## License
 
