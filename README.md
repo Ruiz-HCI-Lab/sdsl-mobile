@@ -15,7 +15,7 @@ To use SDSL-Mobile in your Android application, follow these steps:
 3. **Build the Project:**
     - Use your build system to compile the project. For example, if you use Android Studio, build the project as usual.
 
-## Example Usage
+### Example Usage
 
 Once the library is added and included in your CMake project, you can use it in your source files. Here’s an example of how to use the new library in your code:
 
