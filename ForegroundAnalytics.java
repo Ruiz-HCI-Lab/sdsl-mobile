@@ -13,6 +13,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Debug;
+import android.os.BatteryManager;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -72,6 +73,9 @@ public class ForegroundAnalytics extends Worker{
             [7]- J. Average temperature
         */
 
+        android.os.BatteryManager bm = (android.os.BatteryManager) getApplicationContext().getSystemService(Context.BATTERY_SERVICE);
+        long initialEnergy = bm.getLongProperty(BatteryManager.BATTERY_PROPERTY_ENERGY_COUNTER);
+
         try {
 
             System.out.println("ANALYTICS STARTED");
@@ -86,7 +90,8 @@ public class ForegroundAnalytics extends Worker{
                 fileWriter = new FileWriter(fileLocation);
             BufferedWriter writer = new BufferedWriter(fileWriter);
             if(!fileExists)
-                writer.write("Time, File Size MB, Total Wall Time,Total CPU Time,Max RAM Usage MB,Average RAM Usage MB,Max RAM Usage (Native) MB,Average RAM Usage (Native) MB,Max Temperature,Average Temperature\r\n");
+                writer.write("Time, File Size MB, Total Wall Time, Total CPU Time, Max RAM Usage MB, Average RAM Usage MB, Max RAM Usage (Native) MB, Average RAM Usage (Native) MB, Max Temperature, Average Temperature, Estimated Energy Used (mWh)\r\n");
+
 
             initialCPUTime = ((Global) this.getApplicationContext()).getCpuTime();
             System.out.println("Initial cpu time: "+initialCPUTime/1000+"s");
@@ -129,6 +134,12 @@ public class ForegroundAnalytics extends Worker{
             endTime = System.currentTimeMillis();
             elapsedTime = endTime-startTime;
 
+            long finalEnergy = bm.getLongProperty(BatteryManager.BATTERY_PROPERTY_ENERGY_COUNTER);
+            long energyUsed = finalEnergy - initialEnergy;
+            float energyUsed_mWh = energyUsed / 1000000.0f; // Convert nWh to mWh if not -1
+            System.out.println("Estimated Energy Used: " + energyUsed_mWh + " mWh");
+
+
             SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy HH:mm");
             Date resultdate = new Date(startTime);
 
@@ -143,11 +154,17 @@ public class ForegroundAnalytics extends Worker{
             analyticValues.add(""+totalNativeRam/(1024*1024)); //7
             analyticValues.add(""+maxTemp); //8
             analyticValues.add(""+totalTemp); //9
+            analyticValues.add(""+energyUsed_mWh); //10
 
-            for (int i = 0; i < 9; i++) {
-                writer.write(analyticValues.get(i)+",");
+
+            for (int i = 0; i < analyticValues.size(); i++) {
+                writer.write(analyticValues.get(i));
+                if (i != analyticValues.size() - 1) {
+                    writer.write(",");
+                } else {
+                    writer.write("\r\n");
+                }
             }
-            writer.write(analyticValues.get(9)+"\r\n");
             writer.close();
             System.out.println("Final analytics: Elapsed time: " + elapsedTime/1000 + "s, Cpu time: " + totalCPUTime/1000 + "s, Max ram: "+ maxRam/(1024*1024)+"MB" +", Average ram: "+ totalRam/(1024*1024)+"MB" + ", Current native ram usage: "+ currentNativeRam/(1024*1024)+"MB" +", native Max ram: "+ nativeMaxRam/(1024*1024)+"MB"  + ", Max temp: "+ maxTemp +", Average temp: "+ totalTemp);
 
